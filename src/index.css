@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@media (max-width: 768px) {
+  html, body {
+    overflow: hidden;
+    height: 100% !important;
+    height: 100dvh !important;
+    overscroll-behavior: none !important;
+  }
+  
+  /* Hide scrollbars across elements on mobile */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Kontrol Stok Material",
+  "description": "Aman, Peringatan, dan Kritis. Aplikasi web responsif untuk mencatat penambahan dan pemakaian stok material lapangan secara praktis oleh Mandor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
