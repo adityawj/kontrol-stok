@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk Indonesia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #c4a882;
+            --primary-light: #e8d5bd;
+            --primary-dark: #a08968;
+            --accent-color: #d4956a;
+            --bg-color: #fdf9f5;
+            --bg-gradient-1: #fff9f2;
+            --bg-gradient-2: #f5ebe0;
+            --text-dark: #3d2e1f;
+            --text-muted: #8a7a6a;
+            --text-light: #b5a494;
+            --card-bg: #ffffff;
+            --shadow-color: rgba(196, 168, 130, 0.15);
+            --shadow-hover: rgba(196, 168, 130, 0.35);
+            --border-radius: 14px;
+            --transition-speed: 0.35s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 12px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 16px;
+        }
+
+        .profile-image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--primary-light));
+            animation: rotateBorder 4s linear infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes rotateBorder {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .profile-image {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--card-bg);
+            z-index: 1;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .brand-name {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .brand-name .emoji {
+            font-size: 16px;
+            margin-left: 4px;
+        }
+
+        .tagline {
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .tagline .pointer {
+            font-size: 30px;
+            display: inline-block;
+            animation: pointBounce 1.5s ease-in-out infinite;
+            margin-left: 4px;
+        }
+
+        @keyframes pointBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            margin: 16px auto;
+            border-radius: 2px;
+        }
+
+        /* ===== SEARCH BOX ===== */
+        .search-wrapper {
+            width: 100%;
+            margin-bottom: 20px;
+            position: relative;
+            animation: fadeInUp 0.6s ease-out both;
+            animation-delay: 0.05s;
+        }
+
+        .search-box {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            border: 1.5px solid var(--primary-light);
+            border-radius: 50px;
+            padding: 0 18px;
+            transition: all var(--transition-speed) ease;
+            box-shadow: 0 2px 12px var(--shadow-color);
+        }
+
+        .search-box:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 20px var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .search-icon {
+            color: var(--text-light);
+            font-size: 18px;
+            flex-shrink: 0;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .search-box:focus-within .search-icon {
+            color: var(--primary-color);
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 14px 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-light);
+            font-weight: 300;
+        }
+
+        .search-clear {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: var(--bg-gradient-2);
+            border-radius: 50%;
+            color: var(--text-muted);
+            font-size: 14px;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .search-clear.visible {
+            display: flex;
+        }
+
+        .search-clear:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .search-result-count {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            min-height: 18px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        /* ===== PRODUCT LINK LIST ===== */
+        .product-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .product-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            background: var(--card-bg);
+            border: 1.5px solid var(--primary-light);
+            border-radius: var(--border-radius);
+            padding: 16px 20px;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .product-link:nth-child(1) { animation-delay: 0.1s; }
+        .product-link:nth-child(2) { animation-delay: 0.15s; }
+        .product-link:nth-child(3) { animation-delay: 0.2s; }
+        .product-link:nth-child(4) { animation-delay: 0.25s; }
+        .product-link:nth-child(5) { animation-delay: 0.3s; }
+        .product-link:nth-child(6) { animation-delay: 0.35s; }
+        .product-link:nth-child(7) { animation-delay: 0.4s; }
+        .product-link:nth-child(8) { animation-delay: 0.45s; }
+
+        .product-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+            border-radius: 0 4px 4px 0;
+            opacity: 0;
+            transition: opacity var(--transition-speed) ease;
+        }
+
+        .product-link:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--shadow-hover);
+        }
+
+        .product-link:hover::before {
+            opacity: 1;
+        }
+
+        .product-link:active {
+            transform: translateY(-1px) scale(0.99);
+        }
+
+        .product-link.hidden {
+            display: none;
+        }
+
+        .product-link.highlight .product-name {
+            color: var(--accent-color);
+        }
+
+        .product-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            background: var(--bg-gradient-2);
+            padding: 6px 10px;
+            border-radius: 8px;
+            margin-right: 14px;
+            min-width: 42px;
+            text-align: center;
+            flex-shrink: 0;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .product-link:hover .product-number {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .product-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-dark);
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .product-name .match {
+            background: linear-gradient(120deg, rgba(196, 168, 130, 0.3) 0%, rgba(212, 149, 106, 0.3) 100%);
+            border-radius: 3px;
+            padding: 0 2px;
+            font-weight: 500;
+        }
+
+        .product-arrow {
+            color: var(--text-light);
+            font-size: 18px;
+            margin-left: 8px;
+            transition: all var(--transition-speed) ease;
+            flex-shrink: 0;
+        }
+
+        .product-link:hover .product-arrow {
+            color: var(--primary-color);
+            transform: translateX(4px);
+        }
+
+        /* ===== CATEGORY DIVIDER ===== */
+        .category-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 8px 0;
+            width: 100%;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .category-divider.hidden {
+            display: none;
+        }
+
+        .category-divider::before,
+        .category-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+        }
+
+        .category-divider span {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            background: linear-gradient(90deg, var(--bg-gradient-1), var(--bg-gradient-2));
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--primary-light);
+        }
+
+        /* ===== NO RESULT ===== */
+        .no-result {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        .no-result.visible {
+            display: block;
+        }
+
+        .no-result .no-result-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .no-result .no-result-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .no-result .no-result-hint {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 6px;
+            font-weight: 300;
+        }
+
+        /* ===== NAVIGATION ARROW (Floating) ===== */
+        .nav-arrow {
+            position: fixed;
+            bottom: 30px;
+            right: 24px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--shadow-hover);
+            transition: all var(--transition-speed) ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-arrow:hover {
+            transform: scale(1.1) translateX(3px);
+            box-shadow: 0 6px 20px var(--shadow-hover);
+        }
+
+        .nav-arrow:active {
+            transform: scale(0.95);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--primary-light);
+            width: 100%;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .footer p {
+            font-size: 12px;
+            color: var(--text-light);
+            letter-spacing: 1px;
+        }
+
+        .footer .heart {
+            color: var(--accent-color);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== RESPONSIVE - TABLET ===== */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .container {
+                max-width: 560px;
+                padding: 50px 30px 60px;
+            }
+
+            .profile-image-wrapper {
+                width: 160px;
+                height: 160px;
+            }
+
+            .profile-image {
+                width: 160px;
+                height: 160px;
+            }
+
+            .tagline {
+                font-size: 42px;
+            }
+
+            .product-link {
+                padding: 18px 24px;
+            }
+        }
+
+        /* ===== RESPONSIVE - DESKTOP ===== */
+        @media (min-width: 769px) {
+            .container {
+                max-width: 520px;
+                padding: 60px 30px 80px;
+            }
+
+            .profile-image-wrapper {
+                width: 170px;
+                height: 170px;
+            }
+
+            .profile-image {
+                width: 170px;
+                height: 170px;
+            }
+
+            .tagline {
+                font-size: 44px;
+            }
+
+            .product-link {
+                padding: 20px 26px;
+            }
+
+            .product-name {
+                font-size: 15px;
+            }
+
+            .nav-arrow {
+                bottom: 40px;
+                right: calc(50% - 290px);
+            }
+        }
+
+        /* ===== DARK MODE ===== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1a1512;
+                --bg-gradient-1: #1a1512;
+                --bg-gradient-2: #251f18;
+                --card-bg: #2a231e;
+                --text-dark: #f0e6dc;
+                --text-muted: #a09080;
+                --text-light: #7a6a5a;
+                --primary-light: #4a3d30;
+                --shadow-color: rgba(0, 0, 0, 0.3);
+                --shadow-hover: rgba(196, 168, 130, 0.25);
+            }
+
+            .category-divider span {
+                background: linear-gradient(90deg, var(--bg-gradient-1), var(--bg-gradient-2));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== PROFILE SECTION ===== -->
+        <div class="profile-section">
+
+            <!-- 🔧 GANTI LINK FOTO PROFIL DI SINI -->
+            <!-- 
+            <div class="profile-image-wrapper">
+                <img
+                    src="URL_FOTO_ANDA.jpg"
+                    alt="Profile Photo"
+                    class="profile-image"
+                    id="profileImage"
+                >
+            </div> 
+            -->
+
+            <p class="brand-name">
+                PRODUK LOKAL <span class="emoji">🦋</span>
+            </p>
+            <h1 class="tagline">
+                Klik Disini <span class="pointer">👇🏻</span>
+            </h1>
+
+            <div class="divider"></div>
+        </div>
+
+        <!-- ===== SEARCH BOX ===== -->
+        <div class="search-wrapper">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input
+                    type="text"
+                    class="search-input"
+                    id="searchInput"
+                    placeholder="Cari produk..."
+                    autocomplete="off"
+                >
+                <button class="search-clear" id="searchClear" title="Hapus pencarian">✕</button>
+            </div>
+            <div class="search-result-count" id="searchResultCount"></div>
+        </div>
+
+        <!-- ===== PRODUCT LINKS ===== -->
+        <div class="product-list" id="productList">
+
+            <!-- 🔧 CARA MENAMBAH/MENGUBAH ITEM:
+                 1. Copy satu blok <a> di bawah
+                 2. Ganti href="#" dengan link produk
+                 3. Ganti nomor dan nama produk
+            -->
+
+            <!-- Kategori Divider -->
+            <div class="category-divider" data-category="true">
+                <span>Kategori Bantal</span>
+            </div>
+
+            <a href="https://link-produk-2.com" target="_blank" class="product-link">
+                <span class="product-number">1</span>
+                <span class="product-name">Lorem Ipsum</span>
+                <span class="product-arrow">›</span>
+            </a>
+
+            <a href="https://link-produk-3.com" target="_blank" class="product-link">
+                <span class="product-number">2</span>
+                <span class="product-name">Lorem Ipsum</span>
+                <span class="product-arrow">›</span>
+            </a>
+
+            <a href="https://link-produk-4.com" target="_blank" class="product-link">
+                <span class="product-number">3</span>
+                <span class="product-name">Lorem Ipsum</span>
+                <span class="product-arrow">›</span>
+            </a>
+
+            <!-- Kategori Divider -->
+            <div class="category-divider" data-category="true">
+                <span>Kategori Parfume</span>
+            </div>
+
+            <a href="https://link-produk-5.com" target="_blank" class="product-link">
+                <span class="product-number">4</span>
+                <span class="product-name">Scandal parfume</span>
+                <span class="product-arrow">›</span>
+            </a>
+
+            <a href="https://link-produk-6.com" target="_blank" class="product-link">
+                <span class="product-number">5</span>
+                <span class="product-name">Bloom parfume</span>
+                <span class="product-arrow">›</span>
+            </a>
+
+            <a href="https://link-produk-7.com" target="_blank" class="product-link">
+                <span class="product-number">6</span>
+                <span class="product-name">Basic top brown</span>
+                <span class="product-arrow">›</span>
+            </a>
+
+            <a href="https://link-produk-1.com" target="_blank" class="product-link">
+                <span class="product-number">7</span>
+                <span class="product-name">Satin white lace top</span>
+                <span class="product-arrow">›</span>
+            </a>
+
+            <!-- Kategori Divider -->
+            <div class="category-divider" data-category="true">
+                <span>Kategori Sandal</span>
+            </div>
+
+            <a href="https://link-produk-5.com" target="_blank" class="product-link">
+                <span class="product-number">4</span>
+                <span class="product-name">Lorem Ipsum</span>
+                <span class="product-arrow">›</span>
+            </a>
+
+            <a href="https://link-produk-6.com" target="_blank" class="product-link">
+                <span class="product-number">5</span>
+                <span class="product-name">Lorem Ipsum</span>
+                <span class="product-arrow">›</span>
+            </a>
+
+            <a href="https://link-produk-7.com" target="_blank" class="product-link">
+                <span class="product-number">6</span>
+                <span class="product-name">Lorem Ipsum</span>
+                <span class="product-arrow">›</span>
+            </a>
+
+            <a href="https://link-produk-1.com" target="_blank" class="product-link">
+                <span class="product-number">7</span>
+                <span class="product-name">Lorem Ipsum</span>
+                <span class="product-arrow">›</span>
+            </a>
+
+            <!-- ===== NO RESULT ===== -->
+            <div class="no-result" id="noResult">
+                <span class="no-result-icon">😔</span>
+                <p class="no-result-text">Produk tidak ditemukan</p>
+                <p class="no-result-hint">Coba kata kunci lain atau hapus pencarian</p>
+            </div>
+
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="footer">
+            <p>Made with <span class="heart">♥</span> by Adityawj</p>
+        </div>
+
+    </div>
+
+    <!-- ===== FLOATING NAV ARROW ===== -->
+    <button class="nav-arrow" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Back to top">
+        ↑
+    </button>
+
+    <!-- ===== SEARCH SCRIPT ===== -->
+    <script>
+        (function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchClear = document.getElementById('searchClear');
+            const searchResultCount = document.getElementById('searchResultCount');
+            const productList = document.getElementById('productList');
+            const noResult = document.getElementById('noResult');
+            const productLinks = productList.querySelectorAll('.product-link');
+            const categoryDividers = productList.querySelectorAll('.category-divider');
+
+            // Escape special regex characters
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+
+            // Highlight matching text
+            function highlightText(text, query) {
+                if (!query) return text;
+                const escaped = escapeRegExp(query);
+                const regex = new RegExp('(' + escaped + ')', 'gi');
+                return text.replace(regex, '<span class="match">$1</span>');
+            }
+
+            // Normalize text for searching
+            function normalizeText(text) {
+                return text
+                    .toLowerCase()
+                    .replace(/[àáâãäå]/g, 'a')
+                    .replace(/[èéêë]/g, 'e')
+                    .replace(/[ìíîï]/g, 'i')
+                    .replace(/[òóôõö]/g, 'o')
+                    .replace(/[ùúûü]/g, 'u')
+                    .replace(/[ýÿ]/g, 'y')
+                    .replace(/[ñ]/g, 'n');
+            }
+
+            // Main search function
+            function performSearch() {
+                const query = searchInput.value.trim();
+                const normalizedQuery = normalizeText(query);
+
+                // Toggle clear button
+                if (query.length > 0) {
+                    searchClear.classList.add('visible');
+                } else {
+                    searchClear.classList.remove('visible');
+                }
+
+                let visibleCount = 0;
+                let lastCategoryVisible = false;
+                let currentCategoryEl = null;
+
+                productLinks.forEach(function(link) {
+                    const numberEl = link.querySelector('.product-number');
+                    const nameEl = link.querySelector('.product-name');
+                    const numberText = numberEl.textContent.trim();
+                    const nameText = nameEl.textContent.trim();
+
+                    const searchableNumber = normalizeText(numberText);
+                    const searchableName = normalizeText(nameText);
+
+                    const matches = !query ||
+                        searchableName.includes(normalizedQuery) ||
+                        searchableNumber.includes(normalizedQuery);
+
+                    if (matches) {
+                        link.classList.remove('hidden');
+                        link.classList.add('highlight');
+                        visibleCount++;
+
+                        // Highlight matching text
+                        nameEl.innerHTML = highlightText(nameText, query);
+                    } else {
+                        link.classList.add('hidden');
+                        link.classList.remove('highlight');
+                        nameEl.innerHTML = nameText;
+                    }
+                });
+
+                // Handle category dividers visibility
+                categoryDividers.forEach(function(divider) {
+                    let nextEl = divider.nextElementSibling;
+                    let hasVisibleItem = false;
+
+                    while (nextEl && !nextEl.hasAttribute('data-category')) {
+                        if (nextEl.classList.contains('product-link') && !nextEl.classList.contains('hidden')) {
+                            hasVisibleItem = true;
+                            break;
+                        }
+                        nextEl = nextEl.nextElementSibling;
+                    }
+
+                    if (hasVisibleItem) {
+                        divider.classList.remove('hidden');
+                    } else {
+                        divider.classList.add('hidden');
+                    }
+                });
+
+                // Show/hide no result message
+                if (query.length > 0 && visibleCount === 0) {
+                    noResult.classList.add('visible');
+                } else {
+                    noResult.classList.remove('visible');
+                }
+
+                // Update result count
+                if (query.length > 0) {
+                    searchResultCount.textContent = visibleCount + ' produk ditemukan';
+                } else {
+                    searchResultCount.textContent = '';
+                }
+            }
+
+            // Event listeners
+            searchInput.addEventListener('input', performSearch);
+
+            searchClear.addEventListener('click', function() {
+                searchInput.value = '';
+                searchInput.focus();
+                performSearch();
+            });
+
+            // Keyboard shortcut: press '/' to focus search
+            document.addEventListener('keydown', function(e) {
+                if (e.key === '/' && document.activeElement !== searchInput) {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+                // Press Escape to clear search
+                if (e.key === 'Escape' && document.activeElement === searchInput) {
+                    searchInput.value = '';
+                    searchInput.blur();
+                    performSearch();
+                }
+            });
+
+            // Initial state
+            performSearch();
+        })();
+    </script>
+
+</body>
+</html>
+
